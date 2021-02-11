@@ -13,22 +13,29 @@ public class App
         //Exercise 1
         File file1 = new File("/Users/sebastianbocaciu/Documents/textfile.txt");
         String fileContent = readText(file1);
-        //System.out.println(fileContent);
+        System.out.println(fileContent);
 
         //Exercise 2
-        /*File url = new File("line_of_names.txt");
-            for (String string : bufferedReadText(url)) {
-                System.out.println(string);*/
+        File file2 = new File("line_of_names.txt");
+           for (String string : bufferedReadText(file2)) {
+                System.out.println(string);
             }
         //Exercise 3
-            List<String> stringList = new ArrayList<>();
+        List<String> stringList = new ArrayList<>();
             stringList.add("Emma");
             stringList.add("Sebastian");
             stringList.add("Matteo");
             stringList.add("Oliver");
 
-            File ex3 = new File("exercise3.txt");
-            writeStringtoTextfile(ex3, stringList);
+            File file3 = new File("exercise3.txt");
+            writeStringtoTextfile(file3, stringList);
+
+        //Exercise 4
+        File source = new File("line_of_names.txt");
+        File destination = new File("exercise4_destination.txt");
+        bufferedCopyFile(source, destination);
+
+
 
 
 
@@ -63,9 +70,9 @@ public class App
         return strings; }
 
 //Ex 3
-    public static List<String> writeStringtoTextfile (File destination, List<String> src){
+    public static List<String> writeStringtoTextfile (File destination, List<String> source){
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(destination))) {
-            for (String writeTo : src){
+            for (String writeTo : source){
                 bufferedWriter.write(writeTo);
                 bufferedWriter.newLine();
             }
@@ -73,7 +80,28 @@ public class App
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return src;
+        return source;
+    }
+
+//Ex 4
+    public static void bufferedCopyFile (File source, File destination){
+        try (
+                FileInputStream fileInputStream = new FileInputStream(source);
+                BufferedInputStream inputStream = new BufferedInputStream(fileInputStream);
+                BufferedOutputStream outputStream = new BufferedOutputStream(new FileOutputStream(destination))
+                ){
+            byte [] buffer = new byte[2048];
+            int byteRead;
+
+            while ((byteRead = inputStream.read(buffer))>0){
+                outputStream.write(buffer,0,byteRead);
+            }
+            outputStream.flush();
+        }catch (FileNotFoundException e){
+            e.printStackTrace();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
 }
