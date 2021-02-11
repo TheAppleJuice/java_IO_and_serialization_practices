@@ -1,7 +1,6 @@
 package se.lexicon;
 
-
-import se.lexicon.model.StringObject;
+import sun.font.GlyphList;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -35,7 +34,28 @@ public class App
         File destination = new File("exercise4_destination.txt");
         bufferedCopyFile(source, destination);
 
+        //Exercise 5
+        ArrayList <Car> cars = new ArrayList<>();
+        Car citroen = new Car("ABC123", "Citroen", "C3", 2018);
+        Car volvo = new Car("DEF456", "Volvo", "V60", 2012);
+        Car porsche = new Car("LOL246", "Porsche", "Targa", 2020);
+        cars.add(citroen);
+        cars.add(volvo);
+        cars.add(porsche);
 
+        saveToList(cars, "exercise5Cars.ser");
+        System.out.println("---------------------------------------");
+        List<Car> result = readFromFile("exercise5Cars.ser");
+        System.out.println("registrationNr: " + result.getRegistrationNr());
+        System.out.println("brand: " + result.getBrand());
+        System.out.println("model: " + result.getModel());
+        System.out.println("modelYear: " + result.getModelYear());
+        System.out.println("---------------------------------------");
+
+
+
+
+        //Exercise
 
 
 
@@ -65,7 +85,8 @@ public class App
             String line;
             while ((line = reader.readLine()) != null) {
                 strings.add(line); }
-        } catch (IOException e) { e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return strings; }
 
@@ -102,6 +123,46 @@ public class App
         }catch (IOException e){
             e.printStackTrace();
         }
+    }
+
+// Ex 5b
+    public static List<Car> saveToList (List<Car> source, String filePath){
+        try(
+                ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(filePath))
+        ){
+            objectOutputStream.writeObject(source);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return source;
+    }
+
+// Ex 5c
+    public static List<Car> readFromFile (String filePath){
+        try (
+                ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(filePath))
+            ){
+                    objectInputStream.readObject();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    /*<T> T readFromFile (String fileName){
+        try (
+                ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(fileName));
+                ){
+            return (T) inputStream.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }*/
+
     }
 
 }
