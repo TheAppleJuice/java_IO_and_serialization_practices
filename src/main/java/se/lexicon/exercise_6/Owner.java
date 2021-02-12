@@ -1,29 +1,25 @@
 package se.lexicon.exercise_6;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.UUID;
 
 public class Owner implements Serializable {
-    private int ownerId;
+    private UUID ownerId;
     private String name;
-    private LocalDate birthdate;
+    private String birthdate;
 
     public Owner() {
+        this.ownerId = UUID.randomUUID();
     }
 
-    public Owner(int ownerId, String name, LocalDate birthdate) {
-        this.ownerId = ownerId;
+    public Owner(String name, String birthdate) {
+        this.ownerId = UUID.randomUUID();
         this.name = name;
         this.birthdate = birthdate;
     }
 
-
-    public int getOwnerId() {
+    public UUID getOwnerId() {
         return ownerId;
-    }
-
-    public void setOwnerId(int ownerId) {
-        this.ownerId = ownerId;
     }
 
     public String getName() {
@@ -34,11 +30,11 @@ public class Owner implements Serializable {
         this.name = name;
     }
 
-    public LocalDate getBirthdate() {
+    public String getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(LocalDate birthdate) {
+    public void setBirthdate(String birthdate) {
         this.birthdate = birthdate;
     }
 
@@ -47,7 +43,7 @@ public class Owner implements Serializable {
         return "Owner{" +
                 "ownerId=" + ownerId +
                 ", name='" + name + '\'' +
-                ", birthdate=" + birthdate +
+                ", birthdate='" + birthdate + '\'' +
                 '}';
     }
 }

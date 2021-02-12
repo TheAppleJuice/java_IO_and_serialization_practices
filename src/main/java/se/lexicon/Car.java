@@ -1,10 +1,8 @@
 package se.lexicon;
 
-import se.lexicon.exercise_6.Owner;
 
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.util.UUID;
+
 
 public class Car implements Serializable {
 

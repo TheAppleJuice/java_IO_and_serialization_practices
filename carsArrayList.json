@@ -1,0 +1,23 @@
+[ {
+  "carId" : "783dc018-36d4-448f-812a-e330180e3e1f",
+  "regNumber" : "ABC123",
+  "brand" : "Audi",
+  "model" : "A6",
+  "regDate" : "2021-01-01",
+  "owner" : {
+    "ownerId" : "19d185a0-9736-4a03-902d-40c8f59dc3df",
+    "name" : "Sebastian",
+    "birthdate" : "1978-10-18"
+  }
+}, {
+  "carId" : "1c6e5925-fd74-4ea1-b3f8-8eb40d1f7b34",
+  "regNumber" : "DEF456",
+  "brand" : "Tesla",
+  "model" : "Model X",
+  "regDate" : "2021-02-01",
+  "owner" : {
+    "ownerId" : "c64f8f4a-20e5-42f3-bf1a-e2ec2ccf370d",
+    "name" : "Emma",
+    "birthdate" : "1980-07-20"
+  }
+} ]

@@ -1,8 +1,12 @@
 package se.lexicon;
 
+import se.lexicon.ex_6_util.JsonIOUtil;
+import se.lexicon.exercise_6.Cars;
+import se.lexicon.exercise_6.Owner;
 import sun.font.GlyphList;
 
 import java.io.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,6 +42,7 @@ public class App
 
             File file3 = new File("exercise3.txt");
             writeStringtoTextfile(file3, stringList);
+        System.out.println("Saved to file");
 
 
             System.out.println("-----------------Exercise 4----------------------");
@@ -45,6 +50,8 @@ public class App
         File source = new File("line_of_names.txt");
         File destination = new File("exercise4_destination.txt");
         bufferedCopyFile(source, destination);
+
+        System.out.println("Copied to new file and new destination");
 
 
         System.out.println("-----------------Exercise 5----------------------");
@@ -57,7 +64,7 @@ public class App
         cars.add(volvo);
         cars.add(porsche);
 
-        saveToList(cars, "exercise5Cars.ser");
+        saveToList(cars, "exercise5Cars.txt");
         System.out.println("File saved");
 
 
@@ -71,9 +78,30 @@ public class App
 
 
 
+        System.out.println("-----------------Exercise 6----------------------");
 
-        //Exercise
+        //Exercise 6
+        ArrayList<Owner> ownerArrayList = new ArrayList<>();
+        Owner sebbe = new Owner("Sebastian", "1978-10-18");
+        Owner emma = new Owner("Emma", "1980-07-20");
+        ownerArrayList.add(sebbe);
+        ownerArrayList.add(emma);
 
+        ArrayList<Cars> carsArrayList = new ArrayList<>();
+        Cars audi = new Cars("ABC123", "Audi", "A6", "2021-01-01", sebbe);
+        Cars tesla = new Cars("DEF456", "Tesla", "Model X", "2021-02-01", emma);
+        carsArrayList.add(audi);
+        carsArrayList.add(tesla);
+
+        JsonIOUtil serialize = new JsonIOUtil();
+        File resultCarsFile = new File("carsArrayList.json");
+        serialize.serializeCarsListToJson(carsArrayList, resultCarsFile);
+
+        List<Cars> deserializedResult = serialize.deserializeJsonListToCars(resultCarsFile);
+        System.out.println(deserializedResult.toString());
+        //System.out.println(serialize.deserializeJsonListToCars(new File("carsArrayList.json")));
+        //System.out.println(deserializedResult.get(0));
+        //System.out.println(deserializedResult.get(1));
 
 
     }
@@ -173,7 +201,8 @@ public class App
     }
 
 //Ex 6
-    //public static
+    //Functionality implementation in package "ex_6_util".
+    //Object reference in package "exercise_6".
 
 
 
