@@ -1,9 +1,13 @@
 package se.lexicon;
 
+import se.lexicon.exercise_6.Owner;
+
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.UUID;
 
 public class Car implements Serializable {
+
     private String registrationNr;
     private String brand;
     private String model;
@@ -18,6 +22,7 @@ public class Car implements Serializable {
         this.model = model;
         this.modelYear = modelYear;
     }
+
 
     public String getRegistrationNr() {
         return registrationNr;
@@ -54,7 +59,7 @@ public class Car implements Serializable {
     @Override
     public String toString() {
         return "Car{" +
-                "registrationNr=" + registrationNr +
+                "registrationNr='" + registrationNr + '\'' +
                 ", brand='" + brand + '\'' +
                 ", model='" + model + '\'' +
                 ", modelYear=" + modelYear +

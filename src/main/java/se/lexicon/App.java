@@ -12,13 +12,23 @@ public class App
         //Exercise 1
         File file1 = new File("/Users/sebastianbocaciu/Documents/textfile.txt");
         String fileContent = readText(file1);
+        System.out.println("-----------------Exercise 1----------------------");
         System.out.println(fileContent);
+
+
+
+        System.out.println("-----------------Exercise 2----------------------");
 
         //Exercise 2
         File file2 = new File("line_of_names.txt");
            for (String string : bufferedReadText(file2)) {
                 System.out.println(string);
             }
+
+
+
+        System.out.println("-----------------Exercise 3----------------------");
+
         //Exercise 3
         List<String> stringList = new ArrayList<>();
             stringList.add("Emma");
@@ -29,12 +39,16 @@ public class App
             File file3 = new File("exercise3.txt");
             writeStringtoTextfile(file3, stringList);
 
+
+            System.out.println("-----------------Exercise 4----------------------");
         //Exercise 4
         File source = new File("line_of_names.txt");
         File destination = new File("exercise4_destination.txt");
         bufferedCopyFile(source, destination);
 
-        //Exercise 5
+
+        System.out.println("-----------------Exercise 5----------------------");
+       //Exercise 5
         ArrayList <Car> cars = new ArrayList<>();
         Car citroen = new Car("ABC123", "Citroen", "C3", 2018);
         Car volvo = new Car("DEF456", "Volvo", "V60", 2012);
@@ -44,13 +58,16 @@ public class App
         cars.add(porsche);
 
         saveToList(cars, "exercise5Cars.ser");
-        System.out.println("---------------------------------------");
-        List<Car> result = readFromFile("exercise5Cars.ser");
-        System.out.println("registrationNr: " + result.getRegistrationNr());
-        System.out.println("brand: " + result.getBrand());
-        System.out.println("model: " + result.getModel());
-        System.out.println("modelYear: " + result.getModelYear());
-        System.out.println("---------------------------------------");
+        System.out.println("File saved");
+
+
+        System.out.println("-----------------Exercise 5c---------------------");
+
+        List<Car> result = readFromFile("exercise5Cars.txt");
+        for (Car string : result) {
+            System.out.println(string.toString());
+        }
+
 
 
 
@@ -142,7 +159,9 @@ public class App
         try (
                 ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(filePath))
             ){
-                    objectInputStream.readObject();
+            List<Car> returnObject = (List<Car>) objectInputStream.readObject();
+                    return returnObject;
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -150,19 +169,14 @@ public class App
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+        return null;
+    }
+
+//Ex 6
+    //public static
+
+
+
     }
 
 
-    /*<T> T readFromFile (String fileName){
-        try (
-                ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(fileName));
-                ){
-            return (T) inputStream.readObject();
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-            return null;
-        }*/
-
-    }
-
-}
